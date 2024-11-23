@@ -8,7 +8,6 @@ terraform {
   required_version = "~> 1.9.6"
 }
 
-# Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
   default_tags {
