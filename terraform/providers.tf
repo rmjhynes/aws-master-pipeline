@@ -14,6 +14,7 @@ provider "aws" {
     tags = {
       Environment = "Development"
       DeployedBy  = "Terraform"
+      CodeRepo    = "aws-master-pipeline"
     }
   }
 
