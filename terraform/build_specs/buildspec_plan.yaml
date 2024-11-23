@@ -1,0 +1,26 @@
+version: 0.2
+
+env:
+  variables:
+    // TF_VERSION: from code pipeline
+
+phases:
+  install:
+    commands:
+      - sudo yum install -y yum-utils
+      - sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+      - sudo yum -y install terraform
+  pre_build:
+    commands:
+      - cd terraform
+      - terraform init
+  build:
+    commands:
+      - terraform plan -no-colour -out=tfplan
+  post_build:
+    commands:
+      - echo "Terraform plan completed on $(date)."
+
+artifacts:
+  files:
+    - tfplan
