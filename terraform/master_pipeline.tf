@@ -95,7 +95,7 @@ resource "aws_codebuild_project" "plan" {
     type         = "LINUX_CONTAINER"
   }
 
-  service_role = "arn:aws:iam::123456789012:role/CodeBuildServiceRole"
+  service_role = aws_iam_role.codebuild_plan.arn
 }
 
 resource "aws_codebuild_project" "apply" {
@@ -118,6 +118,6 @@ resource "aws_codebuild_project" "apply" {
     type         = "LINUX_CONTAINER"
   }
 
-  service_role = "arn:aws:iam::123456789012:role/CodeBuildServiceRole"
+  service_role = aws_iam_role.codebuild_apply.arn
 }
 
