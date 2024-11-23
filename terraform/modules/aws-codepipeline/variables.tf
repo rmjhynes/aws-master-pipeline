@@ -10,3 +10,7 @@ variable "branch_name" {
   type    = string
   default = "main"
 }
+
+variable "account_id" {
+  type = string
+}

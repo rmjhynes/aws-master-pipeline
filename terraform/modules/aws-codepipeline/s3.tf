@@ -20,7 +20,7 @@ resource "aws_s3_bucket_policy" "artifact_bucket" {
         Sid    = "AllowRootUserAccess"
         Effect = "Allow"
         Principal = {
-          AWS = "arn:aws:iam::126781719022:root"
+          AWS = "arn:aws:iam:::${var.account_id}:root"
         }
         Action = ["s3:*"
         ]

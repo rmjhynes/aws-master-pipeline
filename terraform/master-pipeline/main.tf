@@ -3,4 +3,5 @@ module "master_pipeline" {
 
   pipeline_name = "master-pipeline"
   repository_id = "rmjhynes/aws-master-pipeline"
+  account_id    = var.account_id
 }
