@@ -21,8 +21,8 @@ resource "aws_codepipeline" "pipeline" {
 
       configuration = {
         // ConnectionArn    = aws_codestarconnections_connection.example.arn
-        FullRepositoryId = "my-organization/example"
-        BranchName       = "main"
+        FullRepositoryId = var.repository_id
+        BranchName       = var.branch_name
       }
     }
   }
@@ -40,7 +40,7 @@ resource "aws_codepipeline" "pipeline" {
       version          = "1"
 
       configuration = {
-        ProjectName = aws_codebuild_project.plan.id
+        ProjectName = aws_codebuild_project.plan.name
       }
     }
   }
@@ -69,7 +69,7 @@ resource "aws_codepipeline" "pipeline" {
       version         = "1"
 
       configuration = {
-        ProjectName = aws_codebuild_project.apply.id
+        ProjectName = aws_codebuild_project.apply.name
       }
     }
   }

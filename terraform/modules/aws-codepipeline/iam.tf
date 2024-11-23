@@ -1,5 +1,5 @@
 resource "aws_iam_role" "pipeline" {
-  name = "pipeline-role"
+  name = "${var.pipeline_name}-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -18,7 +18,7 @@ resource "aws_iam_role" "pipeline" {
 
 
 resource "aws_iam_role_policy" "pipeline" {
-  name = "pipeline-policy"
+  name = "${var.pipeline_name}-policy"
   role = aws_iam_role.pipeline.id
 
   policy = jsonencode({
@@ -130,7 +130,7 @@ resource "aws_iam_role_policy" "codebuild_apply" {
         Effect = "Allow"
         Resource = [
           aws_s3_bucket.pipeline_artifact_bucket.arn,
-          "arn:aws:s3:::$(aws_s3_bucket.pipeline_artifact_bucket.arn)/tfplan"
+          "arn:aws:s3:::${aws_s3_bucket.pipeline_artifact_bucket.arn}/tfplan"
         ]
       },
       {
