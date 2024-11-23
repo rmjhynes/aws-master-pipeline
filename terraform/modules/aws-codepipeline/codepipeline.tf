@@ -1,6 +1,6 @@
-resource "aws_codepipeline" "master_pipeline" {
-  name     = "master_pipeline-pipeline"
-  role_arn = aws_iam_role.master_pipeline.arn
+resource "aws_codepipeline" "pipeline" {
+  name     = var.pipeline_name
+  role_arn = aws_iam_role.pipeline.arn
 
   artifact_store {
     location = aws_s3_bucket.pipeline_artifact_bucket.bucket

@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "pipeline_artifact_bucket" {
-  bucket = "master-pipeline-artifact-bucket"
+  bucket = "pipeline-artifact-bucket"
 }
 
 resource "aws_s3_bucket_public_access_block" "artifact_public_access_block" {
@@ -33,7 +33,7 @@ resource "aws_s3_bucket_policy" "artifact_bucket" {
         Sid    = "AllowCodePipelineAccess"
         Effect = "Allow"
         Principal = {
-          AWS = aws_codepipeline.master_pipeline.arn
+          AWS = aws_codepipeline.pipeline.arn
         }
         Action = "s3:*"
         Resource = [
