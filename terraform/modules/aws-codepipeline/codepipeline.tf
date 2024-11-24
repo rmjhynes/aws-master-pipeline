@@ -3,8 +3,9 @@ data "aws_codestarconnections_connection" "github_connection" {
 }
 
 resource "aws_codepipeline" "pipeline" {
-  name     = var.pipeline_name
-  role_arn = aws_iam_role.pipeline.arn
+  name          = var.pipeline_name
+  role_arn      = aws_iam_role.pipeline.arn
+  pipeline_type = "V2"
 
   artifact_store {
     location = aws_s3_bucket.pipeline_artifact_bucket.bucket
