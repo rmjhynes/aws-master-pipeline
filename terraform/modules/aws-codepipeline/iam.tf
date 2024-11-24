@@ -113,7 +113,7 @@ resource "aws_iam_role_policy" "codebuild_plan" {
           "logs:PutLogEvents"
         ],
         Resource = [
-          "arn:aws:logs:us-east-1:${data.aws_caller_identity.current.id}:log-group:/aws/codebuild/*"
+          "arn:aws:logs:us-east-1:${data.aws_caller_identity.current.id}:log-group:/aws/codebuild/${aws_codebuild_project.plan.name}:*"
         ]
       }
     ]
