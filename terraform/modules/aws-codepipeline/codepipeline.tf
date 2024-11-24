@@ -12,7 +12,7 @@ resource "aws_codepipeline" "pipeline" {
   }
 
   stage {
-    // Source the code to deploy from this repo (aws-master-pipeline)
+    // Source the code to deploy from this repo (aws-master-pipeline) on pushes to main
     name = "Source"
 
     action {
@@ -68,8 +68,8 @@ resource "aws_codepipeline" "pipeline" {
       name            = "Terraform apply"
       category        = "Deploy"
       owner           = "AWS"
-      provider        = "CloudFormation"
-      input_artifacts = ["build_output"]
+      provider        = "CodeBuild"
+      input_artifacts = ["tfplan_file"]
       version         = "1"
 
       configuration = {
@@ -95,7 +95,7 @@ resource "aws_codebuild_project" "plan" {
 
   environment {
     compute_type = "BUILD_GENERAL1_SMALL"
-    image        = "aws/codebuild/amazonlinux-aarch64-standard:3.0"
+    image        = "aws/codebuild/amazonlinux2-x86_64-standard:4.0"
     type         = "LINUX_CONTAINER"
   }
 
@@ -118,7 +118,7 @@ resource "aws_codebuild_project" "apply" {
 
   environment {
     compute_type = "BUILD_GENERAL1_SMALL"
-    image        = "aws/codebuild/amazonlinux-aarch64-standard:3.0"
+    image        = "aws/codebuild/amazonlinux2-x86_64-standard:4.0"
     type         = "LINUX_CONTAINER"
   }
 
