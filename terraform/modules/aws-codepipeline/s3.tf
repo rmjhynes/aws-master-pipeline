@@ -2,6 +2,10 @@ data "aws_caller_identity" "current" {}
 
 resource "aws_s3_bucket" "pipeline_artifact_bucket" {
   bucket = "${var.pipeline_name}-artifact-bucket-${data.aws_caller_identity.current.id}"
+
+  // Force destroy the bucket and everything in it as we don't need it loitering
+  // when the rest of the config is not deployed
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_public_access_block" "artifact_public_access_block" {
