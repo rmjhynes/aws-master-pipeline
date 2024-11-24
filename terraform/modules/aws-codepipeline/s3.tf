@@ -22,25 +22,28 @@ resource "aws_s3_bucket_policy" "artifact_bucket" {
         Sid    = "AllowRootUserAccess"
         Effect = "Allow"
         Principal = {
-          AWS = "arn:aws:iam:::${var.account_id}:root"
+          AWS = "arn:aws:iam::${var.account_id}:root"
         }
-        Action = ["s3:*"
+        Action = [
+          "s3:*"
         ]
         Resource = [
-          "arn:aws:s3:::pipeline_artifact_bucket",
-          "arn:aws:s3:::pipeline_artifact_bucket/*"
+          aws_s3_bucket.pipeline_artifact_bucket.arn,
+          "${aws_s3_bucket.pipeline_artifact_bucket.arn}/*"
         ]
       },
       {
         Sid    = "AllowCodePipelineAccess"
         Effect = "Allow"
         Principal = {
-          AWS = aws_codepipeline.pipeline.arn
+          AWS = aws_iam_role.pipeline.arn
         }
-        Action = "s3:*"
+        Action = [
+          "s3:*"
+        ]
         Resource = [
-          "arn:aws:s3:::pipeline_artifact_bucket",
-          "arn:aws:s3:::pipeline_artifact_bucket/*"
+          aws_s3_bucket.pipeline_artifact_bucket.arn,
+          "${aws_s3_bucket.pipeline_artifact_bucket.arn}/*"
         ]
       }
     ]
