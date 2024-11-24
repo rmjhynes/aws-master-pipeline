@@ -1,5 +1,7 @@
+data "aws_caller_identity" "current" {}
+
 resource "aws_s3_bucket" "pipeline_artifact_bucket" {
-  bucket = "pipeline-artifact-bucket"
+  bucket = "${var.pipeline_name}-artifact-bucket-${data.aws_caller_identity.current.id}"
 }
 
 resource "aws_s3_bucket_public_access_block" "artifact_public_access_block" {
