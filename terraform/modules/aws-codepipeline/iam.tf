@@ -100,6 +100,21 @@ resource "aws_iam_role_policy" "codebuild_plan" {
         ]
         Effect   = "Allow"
         Resource = aws_s3_bucket.pipeline_artifact_bucket.arn
+      },
+      {
+        Sid    = "Logs",
+        Effect = "Allow",
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:DescribeLogStreams",
+          "logs:DescribeLogGroups",
+          "logs:GetLogEvents",
+          "logs:PutLogEvents"
+        ],
+        Resource = [
+          "arn:aws:logs:us-east-1:${data.aws_caller_identity.current.id}:log-group:/aws/codebuild/*"
+        ]
       }
     ]
   })
