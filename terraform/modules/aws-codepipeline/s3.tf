@@ -45,6 +45,23 @@ resource "aws_s3_bucket_policy" "artifact_bucket" {
           aws_s3_bucket.pipeline_artifact_bucket.arn,
           "${aws_s3_bucket.pipeline_artifact_bucket.arn}/*"
         ]
+      },
+      {
+        Sid    = "AllowCodeBuildAccess"
+        Effect = "Allow"
+        Principal = {
+          AWS = [
+            aws_iam_role.codebuild_plan.arn,
+            aws_iam_role.codebuild_apply.arn
+          ]
+        }
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject"
+        ]
+        Resource = [
+          "${aws_s3_bucket.pipeline_artifact_bucket.arn}/*"
+        ]
       }
     ]
   })
