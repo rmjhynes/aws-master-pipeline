@@ -130,7 +130,7 @@ resource "aws_iam_role_policy" "codebuild_apply" {
         Effect = "Allow"
         Resource = [
           aws_s3_bucket.pipeline_artifact_bucket.arn,
-          "arn:aws:s3:::${aws_s3_bucket.pipeline_artifact_bucket.arn}/tfplan"
+          "${aws_s3_bucket.pipeline_artifact_bucket.arn}/tfplan"
         ]
       },
       {
