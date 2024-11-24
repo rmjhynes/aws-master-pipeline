@@ -1,3 +1,7 @@
+data "aws_codestarconnections_connection" "github_connection" {
+  name = "aws-master-pipeline-connection"
+}
+
 resource "aws_codepipeline" "pipeline" {
   name     = var.pipeline_name
   role_arn = aws_iam_role.pipeline.arn
@@ -20,7 +24,7 @@ resource "aws_codepipeline" "pipeline" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        // ConnectionArn    = aws_codestarconnections_connection.example.arn
+        ConnectionArn    = data.aws_codestarconnections_connection.github_connection.arn
         FullRepositoryId = var.repository_id
         BranchName       = var.branch_name
       }
