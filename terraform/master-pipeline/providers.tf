@@ -17,5 +17,4 @@ provider "aws" {
       CodeRepo    = "aws-master-pipeline"
     }
   }
-
 }

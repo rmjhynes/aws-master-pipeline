@@ -1,7 +1,9 @@
 module "master_pipeline" {
   source = "../modules/aws-codepipeline/"
 
-  pipeline_name = "master-pipeline"
-  repository_id = "rmjhynes/aws-master-pipeline"
-  account_id    = var.account_id
+  for_each = toset(var.deployment_accounts)
+
+  pipeline_name = var.pipeline_name
+  account_id    = each.key
+  repository_id = var.repository_id
 }
