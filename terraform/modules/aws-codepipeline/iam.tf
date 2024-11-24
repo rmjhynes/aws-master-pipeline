@@ -36,7 +36,7 @@ resource "aws_iam_role_policy" "pipeline" {
         Sid    = "AccessCodeConnection"
         Effect = "Allow"
         Action = [
-          "codeconnections:*"
+          "codestar-connections:UseConnection"
         ]
         Resource = [
           data.aws_codestarconnections_connection.github_connection.arn
