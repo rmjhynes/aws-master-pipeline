@@ -35,7 +35,7 @@ resource "aws_codepipeline" "pipeline" {
     name = "Build"
 
     action {
-      name             = "Teraform plan"
+      name             = "TerraformPlan"
       category         = "Build"
       owner            = "AWS"
       provider         = "CodeBuild"
@@ -53,7 +53,7 @@ resource "aws_codepipeline" "pipeline" {
     name = "Approval"
 
     action {
-      name     = "Manual approval of tfplan"
+      name     = "ManualApproval"
       category = "Approval"
       owner    = "AWS"
       provider = "Manual"
@@ -65,8 +65,8 @@ resource "aws_codepipeline" "pipeline" {
     name = "Deploy"
 
     action {
-      name            = "Terraform apply"
-      category        = "Deploy"
+      name            = "TerraformApply"
+      category        = "Build"
       owner           = "AWS"
       provider        = "CodeBuild"
       input_artifacts = ["tfplan_file"]
