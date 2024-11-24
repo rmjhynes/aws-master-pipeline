@@ -33,6 +33,16 @@ resource "aws_iam_role_policy" "pipeline" {
         Resource = aws_s3_bucket.pipeline_artifact_bucket.arn
       },
       {
+        Sid    = "AccessCodeConnection"
+        Effect = "Allow"
+        Action = [
+          "codeconnections:*"
+        ]
+        Resource = [
+          data.aws_codestarconnections_connection.github_connection.arn
+        ]
+      },
+      {
         Sid = "ControlCodeBuild"
         Action = [
           "codebuild:*"
