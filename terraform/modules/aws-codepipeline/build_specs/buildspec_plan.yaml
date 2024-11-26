@@ -18,7 +18,7 @@ phases:
     commands:
       - pwd
       - ls -la
-      - cd terraform/master-pipeline
+      - cd terraform/pipelines-to-deploy
       - terraform init
   build:
     commands:
@@ -30,4 +30,4 @@ phases:
 artifacts:
   name: tfplan
   files:
-    - terraform/master-pipeline/tfplan
+    - terraform/pipelines-to-deploy/tfplan
