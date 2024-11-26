@@ -107,6 +107,12 @@ resource "aws_codebuild_project" "plan" {
     type         = "LINUX_CONTAINER"
   }
 
+  logs_config {
+    cloudwatch_logs {
+      group_name = aws_cloudwatch_log_group.plan.name
+    }
+  }
+
   service_role = aws_iam_role.codebuild_plan.arn
 }
 
