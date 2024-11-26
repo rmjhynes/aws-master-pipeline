@@ -9,15 +9,14 @@ phases:
     commands:
       - echo ${TF_VERSION}
       - sudo su
+      - cd /usr/local/bin/
       - curl -LO https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
-      - rm -rf terraform
       - unzip -o terraform_${TF_VERSION}_linux_amd64.zip
-      - mv terraform /usr/local/bin/
-      - chmod +x /usr/local/bin/terraform
+      - chmod +x /terraform
       - terraform version
   pre_build:
     commands:
-      - cd $CODEBUILD_SRC_DIR/terraform/master-pipeline
+      - cd terraform/master-pipeline
       - terraform init
   build:
     commands:
