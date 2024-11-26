@@ -46,6 +46,10 @@ resource "aws_codepipeline" "pipeline" {
 
       configuration = {
         ProjectName = aws_codebuild_project.plan.name
+        EnvironmentVariables = jsonencode([{
+          name  = "TF_VERSION"
+          value = var.tf_version
+        }])
       }
     }
   }

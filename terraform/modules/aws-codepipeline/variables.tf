@@ -15,3 +15,9 @@ variable "repository_id" {
 variable "account_id" {
   type = string
 }
+
+variable "tf_version" {
+  type    = string
+  default = "1.9.8"
+}
+
