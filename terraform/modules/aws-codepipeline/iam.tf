@@ -115,6 +115,17 @@ resource "aws_iam_role_policy" "codebuild_plan" {
         Resource = [
           "arn:aws:logs:us-east-1:${data.aws_caller_identity.current.id}:log-group:/aws/codebuild/${aws_codebuild_project.plan.name}:*"
         ]
+      },
+      {
+        Sid    = "ReadCodeStar"
+        Effect = "Allow"
+        Action = [
+          "codestar-connections:ListConnections",
+          "codestar-connections:ListTagsForResource"
+        ]
+        Resource = [
+          "*"
+        ]
       }
     ]
   })
