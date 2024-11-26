@@ -16,6 +16,8 @@ phases:
       - terraform version
   pre_build:
     commands:
+      - pwd
+      - ls -la
       - cd terraform/master-pipeline
       - terraform init
   build:
