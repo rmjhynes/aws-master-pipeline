@@ -17,7 +17,7 @@ phases:
       - terraform version
   pre_build:
     commands:
-      - cd terraform
+      - cd $CODEBUILD_SRC_DIR/terraform/master-pipeline
       - terraform init
   build:
     commands:
