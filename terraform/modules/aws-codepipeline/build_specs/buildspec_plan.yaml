@@ -9,10 +9,10 @@ phases:
     commands:
       - echo ${TF_VERSION}
       - sudo su
-      - cd /usr/local/bin/
       - curl -LO https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
-      - unzip -o terraform_${TF_VERSION}_linux_amd64.zip
-      - chmod +x terraform
+      - unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /tmp/terraform
+      - mv /tmp/terraform/terraform /usr/local/bin/terraform
+      - chmod +x /usr/local/bin/terraform
       - terraform version
   pre_build:
     commands:
