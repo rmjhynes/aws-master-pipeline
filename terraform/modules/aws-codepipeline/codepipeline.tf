@@ -63,6 +63,9 @@ resource "aws_codepipeline" "pipeline" {
       owner    = "AWS"
       provider = "Manual"
       version  = "1"
+      configuration = {
+        CustomData = "Please review the proposed configuration changes outlined in the Terraform plan in the previous stage."
+      }
     }
   }
 
