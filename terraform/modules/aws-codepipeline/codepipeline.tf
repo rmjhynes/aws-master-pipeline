@@ -41,7 +41,7 @@ resource "aws_codepipeline" "pipeline" {
       owner            = "AWS"
       provider         = "CodeBuild"
       input_artifacts  = ["source_output"]
-      output_artifacts = ["tfplan_file"]
+      output_artifacts = ["tfplan"]
       version          = "1"
 
       configuration = {
@@ -74,7 +74,7 @@ resource "aws_codepipeline" "pipeline" {
       category        = "Build"
       owner           = "AWS"
       provider        = "CodeBuild"
-      input_artifacts = ["tfplan_file"]
+      input_artifacts = ["tfplan"]
       version         = "1"
 
       configuration = {

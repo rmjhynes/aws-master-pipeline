@@ -28,5 +28,6 @@ phases:
       - echo "Terraform plan completed on $(date)."
 
 artifacts:
+  name: tfplan
   files:
-    - tfplan
+    - terraform/master-pipeline/tfplan
