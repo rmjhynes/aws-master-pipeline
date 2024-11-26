@@ -22,7 +22,7 @@ phases:
       - terraform init
   build:
     commands:
-      - terraform plan -no-colour -out=tfplan
+      - terraform plan -no-color -out=tfplan
   post_build:
     commands:
       - echo "Terraform plan completed on $(date)."
