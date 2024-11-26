@@ -12,7 +12,7 @@ phases:
       - cd /usr/local/bin/
       - curl -LO https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
       - unzip -o terraform_${TF_VERSION}_linux_amd64.zip
-      - chmod +x /terraform
+      - chmod +x terraform
       - terraform version
   pre_build:
     commands:
