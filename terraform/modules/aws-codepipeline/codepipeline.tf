@@ -22,7 +22,7 @@ resource "aws_codepipeline" "pipeline" {
       owner            = "AWS"
       provider         = "CodeStarSourceConnection"
       version          = "1"
-      output_artifacts = ["source_output"]
+      output_artifacts = ["source_code"]
 
       configuration = {
         ConnectionArn    = data.aws_codestarconnections_connection.github_connection.arn
@@ -40,7 +40,7 @@ resource "aws_codepipeline" "pipeline" {
       category         = "Build"
       owner            = "AWS"
       provider         = "CodeBuild"
-      input_artifacts  = ["source_output"]
+      input_artifacts  = ["source_code"]
       output_artifacts = ["tfplan"]
       version          = "1"
 
