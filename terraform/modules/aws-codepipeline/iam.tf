@@ -1,5 +1,5 @@
 resource "aws_iam_role" "pipeline" {
-  name = "${var.pipeline_name}-role"
+  name = "${var.pipeline_name}-codepipeline-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -18,7 +18,7 @@ resource "aws_iam_role" "pipeline" {
 
 
 resource "aws_iam_role_policy" "pipeline" {
-  name = "${var.pipeline_name}-policy"
+  name = "${var.pipeline_name}-codepipeline-policy"
   role = aws_iam_role.pipeline.id
 
   policy = jsonencode({
