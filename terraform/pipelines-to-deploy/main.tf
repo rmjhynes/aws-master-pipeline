@@ -1,9 +1,8 @@
-module "master_pipeline" {
+module "worker_pipelines" {
   source = "../modules/aws-codepipeline/"
 
-  for_each = toset(var.deployment_accounts)
-
-  pipeline_name = var.pipeline_name
-  account_id    = each.key
-  repository_id = var.repository_id
+  for_each      = var.pipelines
+  pipeline_name = each.key
+  account_id    = each.value.deployment_accounts[0]
+  repository_id = each.value.code_repository
 }
