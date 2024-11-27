@@ -59,7 +59,7 @@ resource "aws_iam_role_policy" "pipeline" {
 
 
 resource "aws_iam_role" "codebuild_plan" {
-  name = "codebuild-plan-role"
+  name = "${var.pipeline_name}-codebuild-plan-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -77,7 +77,7 @@ resource "aws_iam_role" "codebuild_plan" {
 }
 
 resource "aws_iam_role_policy" "codebuild_plan" {
-  name = "codebuild-plan-policy"
+  name = "${var.pipeline_name}-codebuild-plan-policy"
   role = aws_iam_role.codebuild_plan.id
 
   policy = jsonencode({
@@ -133,7 +133,7 @@ resource "aws_iam_role_policy" "codebuild_plan" {
 
 
 resource "aws_iam_role" "codebuild_apply" {
-  name = "codebuild-apply-role"
+  name = "${var.pipeline_name}-codebuild-apply-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -151,7 +151,7 @@ resource "aws_iam_role" "codebuild_apply" {
 }
 
 resource "aws_iam_role_policy" "codebuild_apply" {
-  name = "codebuild-apply-policy"
+  name = "${var.pipeline_name}-codebuild-apply-policy"
   role = aws_iam_role.codebuild_apply.id
 
   policy = jsonencode({
