@@ -73,15 +73,19 @@ resource "aws_codepipeline" "pipeline" {
     name = "Deploy"
 
     action {
-      name            = "TerraformApply"
-      category        = "Build"
-      owner           = "AWS"
-      provider        = "CodeBuild"
-      input_artifacts = ["tfplan"]
-      version         = "1"
+      name     = "TerraformApply"
+      category = "Build"
+      owner    = "AWS"
+      provider = "CodeBuild"
+      input_artifacts = [
+        "source_code",
+        "tfplan"
+      ]
+      version = "1"
 
       configuration = {
-        ProjectName = aws_codebuild_project.apply.name
+        ProjectName   = aws_codebuild_project.apply.name
+        PrimarySource = "source_code"
       }
     }
   }
@@ -123,7 +127,8 @@ resource "aws_codebuild_project" "apply" {
 
   source {
     type      = "CODEPIPELINE"
-    buildspec = "build_specs/buildspec_apply.yml"
+    buildspec = "terraform/modules/aws-codepipeline/build_specs/buildspec_apply.yaml"
+
   }
 
   artifacts {
