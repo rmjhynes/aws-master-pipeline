@@ -170,6 +170,21 @@ resource "aws_iam_role_policy" "codebuild_apply" {
         ]
       },
       {
+        Sid    = "Logs",
+        Effect = "Allow",
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:DescribeLogStreams",
+          "logs:DescribeLogGroups",
+          "logs:GetLogEvents",
+          "logs:PutLogEvents"
+        ],
+        Resource = [
+          "${aws_cloudwatch_log_group.apply.arn}:*"
+        ]
+      },
+      {
         Sid = "ApplyTerraformConfig"
         Action = [
           "iam:*",
