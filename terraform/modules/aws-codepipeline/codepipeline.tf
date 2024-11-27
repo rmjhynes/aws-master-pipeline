@@ -88,7 +88,7 @@ resource "aws_codepipeline" "pipeline" {
 }
 
 resource "aws_codebuild_project" "plan" {
-  name          = "terraform-plan"
+  name          = "${var.pipeline_name}-terraform-plan"
   description   = "Generates a terraform plan and outputs it to a tfplan file."
   build_timeout = 5
 
@@ -117,7 +117,7 @@ resource "aws_codebuild_project" "plan" {
 }
 
 resource "aws_codebuild_project" "apply" {
-  name          = "terraform-apply"
+  name          = "${var.pipeline_name}-terraform-apply"
   description   = "Applies the terraform configuration from a tfplan file."
   build_timeout = 5
 
