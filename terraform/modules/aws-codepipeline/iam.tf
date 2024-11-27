@@ -166,7 +166,7 @@ resource "aws_iam_role_policy" "codebuild_apply" {
         Effect = "Allow"
         Resource = [
           aws_s3_bucket.pipeline_artifact_bucket.arn,
-          "${aws_s3_bucket.pipeline_artifact_bucket.arn}/tfplan"
+          "${aws_s3_bucket.pipeline_artifact_bucket.arn}/*"
         ]
       },
       {
@@ -181,13 +181,26 @@ resource "aws_iam_role_policy" "codebuild_apply" {
           "logs:PutLogEvents"
         ],
         Resource = [
+          "${aws_cloudwatch_log_group.plan.arn}:*",
           "${aws_cloudwatch_log_group.apply.arn}:*"
+        ]
+      },
+      {
+        Sid    = "ReadCodeStar"
+        Effect = "Allow"
+        Action = [
+          "codestar-connections:ListConnections",
+          "codestar-connections:ListTagsForResource"
+        ]
+        Resource = [
+          "*"
         ]
       },
       {
         Sid = "ApplyTerraformConfig"
         Action = [
           "iam:*",
+          "s3:*"
         ]
         Effect   = "Allow"
         Resource = "*"
