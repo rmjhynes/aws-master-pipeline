@@ -46,10 +46,16 @@ resource "aws_codepipeline" "pipeline" {
 
       configuration = {
         ProjectName = aws_codebuild_project.plan.name
-        EnvironmentVariables = jsonencode([{
-          name  = "TF_VERSION"
-          value = var.tf_version
-        }])
+        EnvironmentVariables = jsonencode([
+          {
+            name  = "TF_VERSION"
+            value = var.tf_version
+          },
+          {
+            name  = "BACKEND_CONFIG_KEY"
+            value = "master-pipeline/${var.pipeline_name}/terraform.tfstate"
+          }
+        ])
       }
     }
   }
@@ -86,6 +92,17 @@ resource "aws_codepipeline" "pipeline" {
       configuration = {
         ProjectName   = aws_codebuild_project.apply.name
         PrimarySource = "source_code"
+        EnvironmentVariables = jsonencode([
+          {
+            name  = "TF_VERSION"
+            value = var.tf_version
+          },
+          {
+            name  = "BACKEND_CONFIG_KEY"
+            value = "master-pipeline/${var.pipeline_name}/terraform.tfstate"
+          }
+        ])
+
       }
     }
   }
