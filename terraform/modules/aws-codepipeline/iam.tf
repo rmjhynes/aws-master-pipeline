@@ -111,6 +111,7 @@ resource "aws_iam_role_policy" "codebuild_plan" {
           "logs:DescribeLogGroups",
           "logs:GetLogEvents",
           "logs:PutLogEvents",
+          "logs:PutRetentionPolicy",
           "logs:TagResource"
         ],
         Resource = [
@@ -180,6 +181,7 @@ resource "aws_iam_role_policy" "codebuild_apply" {
           "logs:DescribeLogGroups",
           "logs:GetLogEvents",
           "logs:PutLogEvents",
+          "logs:PutRetentionPolicy",
           "logs:TagResource"
         ],
         Resource = [

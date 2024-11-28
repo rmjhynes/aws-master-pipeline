@@ -1,6 +1,6 @@
-module "common" {
-  source = "../modules/common/"
-}
+//module "common" {
+//  source = "../modules/common/"
+//}
 
 data "aws_caller_identity" "current" {}
 
