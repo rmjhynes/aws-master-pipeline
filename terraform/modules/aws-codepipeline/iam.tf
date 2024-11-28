@@ -30,7 +30,7 @@ resource "aws_iam_role_policy" "pipeline" {
           "s3:*"
         ]
         Effect   = "Allow"
-        Resource = aws_s3_bucket.pipeline_artifact_bucket.arn
+        Resource = var.shared_pipeline_artifact_bucket.arn
       },
       {
         Sid    = "AccessCodeConnection"
@@ -99,7 +99,7 @@ resource "aws_iam_role_policy" "codebuild_plan" {
           "s3:*"
         ]
         Effect   = "Allow"
-        Resource = aws_s3_bucket.pipeline_artifact_bucket.arn
+        Resource = var.shared_pipeline_artifact_bucket.arn
       },
       {
         Sid    = "Logs",
@@ -110,7 +110,8 @@ resource "aws_iam_role_policy" "codebuild_plan" {
           "logs:DescribeLogStreams",
           "logs:DescribeLogGroups",
           "logs:GetLogEvents",
-          "logs:PutLogEvents"
+          "logs:PutLogEvents",
+          "logs:TagResource"
         ],
         Resource = [
           "${aws_cloudwatch_log_group.plan.arn}:*"
@@ -165,8 +166,8 @@ resource "aws_iam_role_policy" "codebuild_apply" {
         ]
         Effect = "Allow"
         Resource = [
-          aws_s3_bucket.pipeline_artifact_bucket.arn,
-          "${aws_s3_bucket.pipeline_artifact_bucket.arn}/*"
+          var.shared_pipeline_artifact_bucket.arn,
+          "${var.shared_pipeline_artifact_bucket.arn}/*"
         ]
       },
       {
@@ -178,11 +179,13 @@ resource "aws_iam_role_policy" "codebuild_apply" {
           "logs:DescribeLogStreams",
           "logs:DescribeLogGroups",
           "logs:GetLogEvents",
-          "logs:PutLogEvents"
+          "logs:PutLogEvents",
+          "logs:TagResource"
         ],
         Resource = [
-          "${aws_cloudwatch_log_group.plan.arn}:*",
-          "${aws_cloudwatch_log_group.apply.arn}:*"
+          // "${aws_cloudwatch_log_group.plan.arn}:*",
+          //"${aws_cloudwatch_log_group.apply.arn}:*"
+          "*"
         ]
       },
       {

@@ -21,3 +21,10 @@ variable "tf_version" {
   default = "1.9.8"
 }
 
+variable "shared_pipeline_artifact_bucket" {
+  description = "Shared bucket artifact bucket data."
+  type = object({
+    id  = string
+    arn = string
+  })
+}

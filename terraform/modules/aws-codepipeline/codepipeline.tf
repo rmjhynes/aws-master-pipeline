@@ -8,7 +8,7 @@ resource "aws_codepipeline" "pipeline" {
   pipeline_type = "V2"
 
   artifact_store {
-    location = aws_s3_bucket.pipeline_artifact_bucket.bucket
+    location = var.shared_pipeline_artifact_bucket.id
     type     = "S3"
   }
 

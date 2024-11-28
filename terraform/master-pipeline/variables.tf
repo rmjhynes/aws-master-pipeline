@@ -12,3 +12,11 @@ variable "repository_id" {
   description = "The repository which is used to trigger CodePipeline in the Source stage."
   default     = "rmjhynes/aws-master-pipeline"
 }
+
+//variable "shared_pipeline_artifact_bucket" {
+//  description = "Shared bucket artifact bucket data."
+//  type = object({
+//    id  = string
+//    arn = string
+//  })
+//}
