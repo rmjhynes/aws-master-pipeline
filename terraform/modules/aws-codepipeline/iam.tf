@@ -98,8 +98,9 @@ resource "aws_iam_role_policy" "codebuild_plan" {
         Action = [
           "s3:*"
         ]
-        Effect   = "Allow"
-        Resource = var.shared_pipeline_artifact_bucket.arn
+        Effect = "Allow"
+        //Resource = var.shared_pipeline_artifact_bucket.arn
+        Resouce = "*"
       },
       {
         Sid    = "Logs",
@@ -209,7 +210,17 @@ resource "aws_iam_role_policy" "codebuild_apply" {
         Effect   = "Allow"
         Resource = "*"
 
-      }
+      },
+      {
+        Sid = "AccessS3"
+        Action = [
+          "s3:*"
+        ]
+        Effect = "Allow"
+        //Resource = var.shared_pipeline_artifact_bucket.arn
+        Resouce = "*"
+      },
+
     ]
   })
 }
