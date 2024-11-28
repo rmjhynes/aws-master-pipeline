@@ -87,7 +87,9 @@ resource "aws_iam_role_policy" "codebuild_plan" {
         Sid = "ReadAWSEnvironment"
         Action = [
           "iam:Get*",
-          "iam:List*"
+          "iam:List*",
+          "codebuild:*",
+          "codepipeline:*"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -112,9 +114,11 @@ resource "aws_iam_role_policy" "codebuild_plan" {
           "logs:DescribeLogGroups",
           "logs:GetLogEvents",
           "logs:PutLogEvents",
+          "logs:ListTagsForResource"
         ],
         Resource = [
-          "${aws_cloudwatch_log_group.plan.arn}:*"
+          //"${aws_cloudwatch_log_group.plan.arn}:*"
+          "*"
         ]
       },
       {
@@ -205,7 +209,8 @@ resource "aws_iam_role_policy" "codebuild_apply" {
         Sid = "ApplyTerraformConfig"
         Action = [
           "iam:*",
-          "s3:*"
+          "s3:*",
+          "codebuild:*"
         ]
         Effect   = "Allow"
         Resource = "*"
