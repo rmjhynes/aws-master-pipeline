@@ -111,8 +111,6 @@ resource "aws_iam_role_policy" "codebuild_plan" {
           "logs:DescribeLogGroups",
           "logs:GetLogEvents",
           "logs:PutLogEvents",
-          "logs:PutRetentionPolicy",
-          "logs:TagResource"
         ],
         Resource = [
           "${aws_cloudwatch_log_group.plan.arn}:*"
@@ -182,7 +180,8 @@ resource "aws_iam_role_policy" "codebuild_apply" {
           "logs:GetLogEvents",
           "logs:PutLogEvents",
           "logs:PutRetentionPolicy",
-          "logs:TagResource"
+          "logs:TagResource",
+          "logs:ListTagsForResource"
         ],
         Resource = [
           // "${aws_cloudwatch_log_group.plan.arn}:*",
