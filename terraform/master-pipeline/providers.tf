@@ -1,7 +1,6 @@
 terraform {
   backend "s3" {
     bucket = "terraform-state-126781719022"
-    //key    = "master-pipeline/master-pipeline/terraform.tfstate"
     region = "us-east-1"
   }
   required_providers {
