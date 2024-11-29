@@ -100,8 +100,7 @@ resource "aws_iam_role_policy" "codebuild_plan" {
         Action = [
           "s3:*"
         ]
-        Effect = "Allow"
-        //Resource = var.shared_pipeline_artifact_bucket.arn
+        Effect   = "Allow"
         Resource = "*"
       },
       {
@@ -117,7 +116,6 @@ resource "aws_iam_role_policy" "codebuild_plan" {
           "logs:ListTagsForResource"
         ],
         Resource = [
-          //"${aws_cloudwatch_log_group.plan.arn}:*"
           "*"
         ]
       },
@@ -189,8 +187,6 @@ resource "aws_iam_role_policy" "codebuild_apply" {
           "logs:ListTagsForResource"
         ],
         Resource = [
-          // "${aws_cloudwatch_log_group.plan.arn}:*",
-          //"${aws_cloudwatch_log_group.apply.arn}:*"
           "*"
         ]
       },
@@ -223,8 +219,7 @@ resource "aws_iam_role_policy" "codebuild_apply" {
         Action = [
           "s3:*"
         ]
-        Effect = "Allow"
-        //Resource = var.shared_pipeline_artifact_bucket.arn
+        Effect   = "Allow"
         Resource = "*"
       },
 
