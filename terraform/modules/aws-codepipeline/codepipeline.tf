@@ -52,8 +52,9 @@ resource "aws_codepipeline" "pipeline" {
             value = var.tf_version
           },
           {
-            name  = "BACKEND_CONFIG_KEY"
-            value = "master-pipeline/${var.pipeline_name}/terraform.tfstate"
+            name = "BACKEND_CONFIG_KEY"
+            //value = "master-pipeline/${var.pipeline_name}/terraform.tfstate"
+            value = "master-pipeline/sample_pipeline/terraform.tfstate"
           }
         ])
       }
@@ -98,8 +99,9 @@ resource "aws_codepipeline" "pipeline" {
             value = var.tf_version
           },
           {
-            name  = "BACKEND_CONFIG_KEY"
-            value = "master-pipeline/${var.pipeline_name}/terraform.tfstate"
+            name = "BACKEND_CONFIG_KEY"
+            //value = "master-pipeline/${var.pipeline_name}/terraform.tfstate"
+            value = "master-pipeline/sample_pipeline/terraform.tfstate"
           }
         ])
 
