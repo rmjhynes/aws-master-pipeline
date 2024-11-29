@@ -199,7 +199,8 @@ resource "aws_iam_role_policy" "codebuild_apply" {
         Effect = "Allow"
         Action = [
           "codestar-connections:ListConnections",
-          "codestar-connections:ListTagsForResource"
+          "codestar-connections:ListTagsForResource",
+          "codestar-connections:PassConnection"
         ]
         Resource = [
           "*"
@@ -210,7 +211,8 @@ resource "aws_iam_role_policy" "codebuild_apply" {
         Action = [
           "iam:*",
           "s3:*",
-          "codebuild:*"
+          "codebuild:*",
+          "codepipeline:*"
         ]
         Effect   = "Allow"
         Resource = "*"

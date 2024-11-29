@@ -15,7 +15,7 @@ phases:
       - pwd
       - ls -la
       - cd terraform/pipelines-to-deploy
-      - terraform init -reconfigure -backend-config="key=${BACKEND_CONFIG_KEY}"
+      - terraform init -backend-config="key=${BACKEND_CONFIG_KEY}"
   build:
     commands:
       - terraform apply -auto-approve -no-color
