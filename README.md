@@ -9,7 +9,7 @@
 - IAM roles.
 - CloudWatch Log Groups.
 
-> [!IMPORTANT] Source stage failure after initial deployment
+> [!IMPORTANT]
 > For some reason, when the master pipeline is first deployed the source stage fails with a permissions error. Manually releasing the change will allow it to work.
 
 ### Terraform State Configuration
