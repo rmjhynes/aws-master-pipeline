@@ -18,7 +18,7 @@ variable "account_id" {
 
 variable "tf_version" {
   type    = string
-  default = "1.9.8"
+  default = "1.10.0"
 }
 
 variable "shared_pipeline_artifact_bucket" {
