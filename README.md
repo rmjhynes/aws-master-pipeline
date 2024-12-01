@@ -33,8 +33,6 @@ If you want to destroy the resources related to any worker pipelines from your l
 then
 `terraform destroy`  
 
----
-
 > [!IMPORTANT]
 > For some reason, when the master pipeline is first deployed the source stage fails with a permissions error. Manually releasing the change will allow it to work.  
 
