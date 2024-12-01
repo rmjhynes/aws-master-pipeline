@@ -6,6 +6,7 @@ A master pipeline that deploys worker pipelines to selected AWS accounts, with e
 
 ## Components
 - S3 bucket to store Terraform state (deployed by CloudFormation).
+- S3 bucket for shared artifacts.
 - AWS CodePipeline.
 - AWS CodeBuild projects to generate a terraform plan file and then apply the configuration.
 - IAM roles.
