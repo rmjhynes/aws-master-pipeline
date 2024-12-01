@@ -1,6 +1,13 @@
-# Title
+# AWS Master Pipeline
 
-## Description
+## A master pipeline that deploys worker pipelines to selected AWS accounts, with each worker pipeline pulling and deploying code from its own designated repository.
+
+### Components
+- S3 bucket to store Terraform state.
+- AWS CodePipeline
+- AWS CodeBuild projects to generate a terraform plan file and then apply the configuration.
+- IAM roles
+- CloudWatch Log Groups
 
 > [!INFO] Source stage failure after initial deployment
 > For some reason, when the master pipeline is first deployed the source stage fails with a permissions error. Manually releasing the change will allow it to work.
@@ -16,3 +23,6 @@ If you want to destroy the resources related to any worker pipelines from your l
 `terraform init -reconfigure -backend-config="key=<pipeline-name-that-deployed-the-resources>.tfstate"`
 then
 `terraform destroy`
+
+### AWS Connector for GitHub
+For each code repository that you want to pull code from, you will have to configure the AWS Connector for GitHub in your repo settings. This allows GitHub to trigger the pipelines when code is pushed to a repo.
