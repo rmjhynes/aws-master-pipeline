@@ -36,3 +36,9 @@ then
 > [!IMPORTANT]
 > For some reason, when the master pipeline is first deployed the source stage fails with a permissions error. Manually releasing the change will allow it to work.  
 
+---
+
+## To Be Fixed / Implemented
+
+### Worker Pipelines Sourcing Build Specs
+Due to the way the modules are configured and called via a `for_each`, the build specs for the worker pipelines cannot be sourced from this code repo because they already source code from their respective GitHub code repos. This needs to be fixed / changed as currently the codebuild projects cannot run without their build specs.
