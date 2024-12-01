@@ -12,10 +12,6 @@ variable "repository_id" {
   description = "The repository which is used to trigger CodePipeline in the Source stage."
 }
 
-variable "account_id" {
-  type = string
-}
-
 variable "tf_version" {
   type    = string
   default = "1.10.0"

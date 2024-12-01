@@ -1,8 +1,3 @@
-variable "deployment_accounts" {
-  description = "A list containing the Account IDs in which the master pipeline should be deployed."
-  type        = list(string)
-}
-
 variable "pipeline_name" {
   type = string
 }
