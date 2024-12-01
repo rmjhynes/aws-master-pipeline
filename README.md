@@ -41,4 +41,4 @@ then
 ## To Be Fixed / Implemented
 
 ### Worker Pipelines Sourcing Build Specs
-Due to the way the modules are configured and called via a `for_each`, the build specs for the worker pipelines cannot be sourced from this code repo because they already source code from their respective GitHub code repos. This needs to be fixed / changed as currently the codebuild projects cannot run without their build specs.
+Due to the way the modules are configured and called via a `for_each`, the build specs for the worker pipelines cannot be sourced from this code repo because they already source code from their respective GitHub code repos. This needs to be fixed / changed as currently the worker pipeline codebuild projects cannot run without their build specs.
