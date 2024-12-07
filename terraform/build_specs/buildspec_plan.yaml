@@ -27,4 +27,5 @@ phases:
 artifacts:
   name: tfplan
   files:
-    - terraform/pipelines-to-deploy/tfplan
+    #- terraform/pipelines-to-deploy/tfplan
+    - ${WORKING_DIR}/tfplan
