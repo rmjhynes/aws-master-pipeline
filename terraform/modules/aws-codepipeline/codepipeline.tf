@@ -54,6 +54,10 @@ resource "aws_codepipeline" "pipeline" {
           {
             name  = "BACKEND_CONFIG_KEY"
             value = "${var.pipeline_name}.tfstate"
+          },
+          {
+            name  = "WORKING_DIR"
+            value = var.working_dir
           }
         ])
       }
@@ -100,6 +104,10 @@ resource "aws_codepipeline" "pipeline" {
           {
             name  = "BACKEND_CONFIG_KEY"
             value = "${var.pipeline_name}.tfstate"
+          },
+          {
+            name  = "WORKING_DIR"
+            value = var.working_dir
           }
         ])
 
@@ -114,8 +122,9 @@ resource "aws_codebuild_project" "plan" {
   build_timeout = 5
 
   source {
-    type      = "CODEPIPELINE"
-    buildspec = "terraform/modules/aws-codepipeline/build_specs/buildspec_plan.yaml"
+    type = "CODEPIPELINE"
+    //buildspec = "terraform/modules/aws-codepipeline/build_specs/buildspec_plan.yaml
+    buildspec = "../build_specs/buildspec_plan.yaml"
   }
 
   artifacts {

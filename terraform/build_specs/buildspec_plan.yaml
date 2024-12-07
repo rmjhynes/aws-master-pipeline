@@ -14,8 +14,7 @@ phases:
     commands:
       - pwd
       - ls -la
-      # - cd terraform/pipelines-to-deploy
-      - cd ${WORKING_DIR}
+      - cd terraform/pipelines-to-deploy
       - terraform init -backend-config="key=${BACKEND_CONFIG_KEY}"
   build:
     commands:

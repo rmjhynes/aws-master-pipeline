@@ -4,7 +4,7 @@ variable "pipeline_name" {
 
 variable "branch_name" {
   type    = string
-  default = "main"
+  default = "updating-build-specs"
 }
 
 variable "repository_id" {
@@ -23,4 +23,9 @@ variable "shared_pipeline_artifact_bucket" {
     id  = string
     arn = string
   })
+}
+
+variable "working_dir" {
+  type        = string
+  description = "The directory of the terraform config to deploy."
 }
