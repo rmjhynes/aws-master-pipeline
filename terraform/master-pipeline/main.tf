@@ -7,6 +7,7 @@ module "master_pipeline" {
 
   pipeline_name = var.pipeline_name
   repository_id = var.repository_id
+  working_dir   = "terraform/pipelines-to-deploy"
   shared_pipeline_artifact_bucket = {
     id  = module.common.shared_pipeline_artifact_bucket_id
     arn = module.common.shared_pipeline_artifact_bucket_arn

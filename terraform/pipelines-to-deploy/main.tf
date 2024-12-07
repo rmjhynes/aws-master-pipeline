@@ -10,6 +10,7 @@ module "worker_pipelines" {
   for_each      = var.pipelines
   pipeline_name = each.key
   repository_id = each.value.code_repository
+  working_dir   = each.value.working_dir
   shared_pipeline_artifact_bucket = {
     id  = data.aws_s3_bucket.shared_pipeline_artifact_bucket.id
     arn = data.aws_s3_bucket.shared_pipeline_artifact_bucket.arn
