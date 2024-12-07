@@ -20,7 +20,7 @@ A master pipeline that deploys worker pipelines to selected AWS accounts, with e
 For each code repository that you want to pull code from, you will have to configure the AWS Connector for GitHub in your repo settings. This allows GitHub to trigger the pipelines when code is pushed to a repo.  
 
 ### Terraform State Bucket
-The Terraform state bucket CloudFormation template is found in `/cloudformation` and should be created in the account in which you are deploying the `master-pipeline` to. This can be done manually in the console or using the AWS CLI.  
+The Terraform state bucket CloudFormation template is found in `/cloudformation` and should be created in the account in which you are deploying the `master-pipeline` to. This can be done manually in the console or using the script `deploy.sh`.  
 
 ### Terraform State Configuration
 To initialise the s3 backend for the master-pipeline, run:
@@ -41,5 +41,5 @@ then
 
 ## To Be Fixed / Implemented
 
-### Worker Pipelines Sourcing Build Specs
-Due to the way the modules are configured and called via a `for_each`, the build specs for the worker pipelines cannot be sourced from this code repo because they already source code from their respective GitHub code repos. This needs to be fixed / changed as currently the worker pipeline codebuild projects cannot run without their build specs.
+### Worker Pipeline Backend Configurations
+At the moment there is a `backend.hcl` file for just the  `master-pipeline`. I now need to pass in the whole backend config for each pipeline that is deployed as the repos that they are pulling code from don't have an s3 backend block in the terraforn block in `providers.tf`, hence it uses a local state file every time and then cannot read the resources that its already deployed. Refer to the differences in `providers.tf` in `aws-sample-config` repo and `aws-master-pipeline` repo.
