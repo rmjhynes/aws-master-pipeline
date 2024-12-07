@@ -14,7 +14,6 @@ phases:
     commands:
       - pwd
       - ls -la
-            # - cd terraform/pipelines-to-deploy
       - cd ${WORKING_DIR}
       - terraform init -backend-config="key=${BACKEND_CONFIG_KEY}"
   build:
@@ -27,5 +26,4 @@ phases:
 artifacts:
   name: tfplan
   files:
-    #- terraform/pipelines-to-deploy/tfplan
     - ${WORKING_DIR}/tfplan
