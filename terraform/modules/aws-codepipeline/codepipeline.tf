@@ -124,7 +124,7 @@ resource "aws_codebuild_project" "plan" {
   source {
     type = "CODEPIPELINE"
     //buildspec = "terraform/modules/aws-codepipeline/build_specs/buildspec_plan.yaml
-    buildspec = "../build_specs/buildspec_plan.yaml"
+    buildspec = "terraform/build_specs/buildspec_plan.yaml"
   }
 
   artifacts {
