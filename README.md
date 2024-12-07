@@ -23,8 +23,8 @@ For each code repository that you want to pull code from, you will have to confi
 The Terraform state bucket CloudFormation template is found in `/cloudformation` and should be created in the account in which you are deploying the `master-pipeline` to. This can be done manually in the console or using the script `deploy.sh`.  
 
 ### Terraform State Configuration
-To initialise the s3 backend for the master-pipeline, run:
-`terraform init -reconfigure -backend-config=backend.hcl`
+To initialise the s3 backend for the `master-pipeline`, run:
+`terraform init -reconfigure -backend-config=backend.hcl` in `/master-pipeline`
 
 The s3 backend for the `pipelines-to-deploy` module is initialised in codebuild when it runs:
 `terraform init -backend-config="key=<pipeline-name>.tfstate"`
