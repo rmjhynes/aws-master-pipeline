@@ -4,7 +4,7 @@ variable "pipeline_name" {
 
 variable "branch_name" {
   type    = string
-  default = "updating-build-specs"
+  default = "main"
 }
 
 variable "repository_id" {
