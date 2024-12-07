@@ -152,9 +152,9 @@ resource "aws_codebuild_project" "apply" {
   build_timeout = 5
 
   source {
-    type      = "CODEPIPELINE"
-    buildspec = "terraform/modules/aws-codepipeline/build_specs/buildspec_apply.yaml"
-
+    type = "CODEPIPELINE"
+    //buildspec = "terraform/modules/aws-codepipeline/build_specs/buildspec_apply.yaml"
+    buildspec = "terraform/build_specs/buildspec_apply.yaml"
   }
 
   artifacts {
