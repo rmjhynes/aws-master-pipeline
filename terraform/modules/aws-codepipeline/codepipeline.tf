@@ -124,7 +124,9 @@ resource "aws_codebuild_project" "plan" {
   source {
     type = "CODEPIPELINE"
     //buildspec = "terraform/modules/aws-codepipeline/build_specs/buildspec_plan.yaml
-    buildspec = "terraform/build_specs/buildspec_plan.yaml"
+    // buildspec = file("terraform/build_specs/buildspec_plan.yaml")
+    buildspec = file("../build_specs/buildspec_plan.yaml")
+
   }
 
   artifacts {
@@ -154,7 +156,8 @@ resource "aws_codebuild_project" "apply" {
   source {
     type = "CODEPIPELINE"
     //buildspec = "terraform/modules/aws-codepipeline/build_specs/buildspec_apply.yaml"
-    buildspec = "terraform/build_specs/buildspec_apply.yaml"
+    //buildspec = "terraform/build_specs/buildspec_apply.yaml"
+    buildspec = file("../build_specs/buildspec_apply.yaml")
   }
 
   artifacts {
