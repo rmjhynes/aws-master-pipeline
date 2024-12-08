@@ -1,5 +1,6 @@
 terraform {
   backend "s3" {
+    // Backend values set using backend.hcl file
   }
   required_providers {
     aws = {

@@ -1,5 +1,6 @@
 terraform {
   backend "s3" {
+    // Backend values dynamically set by passing in values in codepipeline.tf
   }
   required_providers {
     aws = {
