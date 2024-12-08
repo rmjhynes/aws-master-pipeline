@@ -27,10 +27,11 @@ To initialise the s3 backend for the `master-pipeline`, run:
 `terraform init -reconfigure -backend-config=backend.hcl` in `/master-pipeline`
 
 The s3 backend for the `pipelines-to-deploy` module is initialised in codebuild when it runs:
-`terraform init -backend-config="key=<pipeline-name>.tfstate"`
+`terraform init -backend-config="region=<region>" -backend-config="bucket=terraform-state-<aws-account-id>" -backend-config="key=<pipeline-name-that-deployed-the-resources>.tfstate"`
 
 If you want to destroy the resources related to any worker pipelines from your local - you have to run:
-`terraform init -reconfigure -backend-config="key=<pipeline-name-that-deployed-the-resources>.tfstate"`
+`terraform init -reconfigure -backend-config="region=<region>" -backend-config="bucket=terraform-state-<aws-account-id>" -backend-config="key=<pipeline-name-that-deployed-the-resources>.tfstate"`
+
 then
 `terraform destroy`  
 
