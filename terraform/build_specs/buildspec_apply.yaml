@@ -15,7 +15,6 @@ phases:
       - pwd
       - ls -la
       - cd ${WORKING_DIR}
-      #- terraform init -backend-config="key=${BACKEND_CONFIG_KEY}"
       - |
         terraform init -backend-config="region=${BACKEND_CONFIG_REGION}" \
         -backend-config="bucket=${BACKEND_CONFIG_BUCKET}" \
