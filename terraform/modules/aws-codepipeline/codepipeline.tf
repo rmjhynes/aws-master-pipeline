@@ -52,8 +52,16 @@ resource "aws_codepipeline" "pipeline" {
             value = var.tf_version
           },
           {
+            name  = "BACKEND_CONFIG_BUCKET"
+            value = "terraform-state-126781719022"
+          },
+          {
             name  = "BACKEND_CONFIG_KEY"
             value = "${var.pipeline_name}.tfstate"
+          },
+          {
+            name  = "BACKEND_CONFIG_REGION"
+            value = "us-east-1"
           },
           {
             name  = "WORKING_DIR"
