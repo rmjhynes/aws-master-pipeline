@@ -1,7 +1,3 @@
-data "aws_codestarconnections_connection" "github_connection" {
-  name = "aws-master-pipeline-connection"
-}
-
 resource "aws_codepipeline" "pipeline" {
   name          = var.pipeline_name
   role_arn      = aws_iam_role.pipeline.arn
@@ -13,7 +9,6 @@ resource "aws_codepipeline" "pipeline" {
   }
 
   stage {
-    // Source the code to deploy from this repo (aws-master-pipeline) on pushes to main
     name = "Source"
 
     action {
@@ -53,11 +48,11 @@ resource "aws_codepipeline" "pipeline" {
           },
           {
             name  = "BACKEND_CONFIG_REGION"
-            value = "us-east-1"
+            value = data.aws_region.current.id
           },
           {
             name  = "BACKEND_CONFIG_BUCKET"
-            value = "terraform-state-126781719022"
+            value = "terraform-state-${data.aws_caller_identity.current.id}"
           },
           {
             name  = "BACKEND_CONFIG_KEY"
@@ -111,11 +106,11 @@ resource "aws_codepipeline" "pipeline" {
           },
           {
             name  = "BACKEND_CONFIG_REGION"
-            value = "us-east-1"
+            value = data.aws_region.current.id
           },
           {
             name  = "BACKEND_CONFIG_BUCKET"
-            value = "terraform-state-126781719022"
+            value = "terraform-state-${data.aws_caller_identity.current.id}"
           },
           {
             name  = "BACKEND_CONFIG_KEY"
