@@ -36,10 +36,3 @@ then
 
 > [!IMPORTANT]
 > For some reason, when the master pipeline is first deployed the source stage fails with a permissions error. Manually releasing the change will allow it to work.  
-
----
-
-## To Be Fixed / Implemented
-
-### Worker Pipeline Backend Configurations
-At the moment there is a `backend.hcl` file for just the  `master-pipeline`. I now need to pass in the whole backend config for each pipeline that is deployed as the repos that they are pulling code from don't have an s3 backend block in the terraforn block in `providers.tf`, hence it uses a local state file every time and then cannot read the resources that its already deployed. Refer to the differences in `providers.tf` in `aws-sample-config` repo and `aws-master-pipeline` repo.
